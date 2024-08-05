@@ -1,0 +1,23 @@
+.Address {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 0vh 10vh;
+    padding-bottom: 5vh;
+}
+
+.Input_container {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+.Input_container input{
+    width: 50vh;
+    height: 4vh;
+}
+
+.Input_container p {
+    margin: 0px;
+    font-size: 1.7rem;
+}
+

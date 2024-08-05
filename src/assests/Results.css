@@ -1,0 +1,33 @@
+.Results {
+    display: grid;
+    justify-content: center;
+}
+.Results_Header {
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+.Results_Header select {
+    width: 15vh;
+    height: 5vh;
+    margin-left: 5vh;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.Results_Header p {
+    font-size: 1.7rem;
+    margin-top: 0vh;
+}
+
+.Results_List textarea{
+    width: 60vh;
+    height: 60vh;
+}
+
+.Results_List textarea::placeholder {
+    text-align: center;
+    padding-top: 45%;
+    font-size: 2rem;
+}
