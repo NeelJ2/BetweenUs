@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Autocomplete from 'react-google-autocomplete';
-import '../assests/Address.css'
+import '../assests/Address.css';
 
 function Address() {
+    // Declare state variables for storing addresses
+    const [myAddress, setMyAddress] = useState(null);
+    const [friendsAddress, setFriendsAddress] = useState(null);
+
     return (
         <div className='Address'>
             <div className='Input_container'>
@@ -10,12 +14,13 @@ function Address() {
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%"}}
-                    onPlaceSelected={(place1) => 
-                    {console.log(place1)}
-                    }
+                    onPlaceSelected={(place1) => {
+                        console.log(place1);
+                        setMyAddress(place1); // Save selected address in state
+                    }}
                     options={{
                         types: ['address'],
-                        componentRestrictions: { country: "us"}
+                        componentRestrictions: { country: "us" }
                     }}
                 />
             </div>
@@ -24,15 +29,17 @@ function Address() {
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%"}}
-                    onPlaceSelected={(place2) => 
-                    {console.log(place2)}
-                    }
+                    onPlaceSelected={(place2) => {
+                        console.log(place2);
+                        setFriendsAddress(place2); // Save selected address in state
+                    }}
                     options={{
                         types: ['address'],
-                        componentRestrictions: { country: "us"}
+                        componentRestrictions: { country: "us" }
                     }}
                 />
             </div>
+
         </div>
     );
 }
