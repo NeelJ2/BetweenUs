@@ -15,8 +15,8 @@ function Address() {
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%"}}
                     onPlaceSelected={(place1) => {
-                        console.log(place1);
                         setMyAddress(place1); // Save selected address in state
+                        console.log(myAddress);
                     }}
                     options={{
                         types: ['address'],
@@ -30,8 +30,12 @@ function Address() {
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%"}}
                     onPlaceSelected={(place2) => {
-                        console.log(place2);
                         setFriendsAddress(place2); // Save selected address in state
+                        // console.log(friendsAddress.geometry.location.lat());
+                        // console.log(friendsAddress.geometry.location.long());
+                        console.log(friendsAddress) // TODO: Why is this giving NULL error now???
+                        console.log(place2.geometry.location.lat());
+                        console.log(place2.geometry.location.lng());
                     }}
                     options={{
                         types: ['address'],

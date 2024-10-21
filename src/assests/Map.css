@@ -21,13 +21,7 @@
     margin-top: 0vh;
 }
 
-.Map textarea{
+.Map_Box {
     width: 60vh;
     height: 60vh;
-}
-
-.Map textarea::placeholder {
-    text-align: center;
-    padding-top: 45%;
-    font-size: 2rem;
 }
