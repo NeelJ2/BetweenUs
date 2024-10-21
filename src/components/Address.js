@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import '../assests/Address.css';
 
@@ -6,6 +6,24 @@ function Address() {
     // Declare state variables for storing addresses
     const [myAddress, setMyAddress] = useState(null);
     const [friendsAddress, setFriendsAddress] = useState(null);
+
+    // Use useEffect to log the updated value of myAddress
+    useEffect(() => {
+        if (myAddress) {
+            console.log(myAddress);
+            console.log(myAddress.geometry.location.lat());
+            console.log(myAddress.geometry.location.lng());
+        }
+    }, [myAddress]);
+
+    // Use useEffect to log the updated value of friendsAddress
+    useEffect(() => {
+        if (friendsAddress) {
+            console.log(friendsAddress);
+            console.log(friendsAddress.geometry.location.lat());
+            console.log(friendsAddress.geometry.location.lng());
+        }
+    }, [friendsAddress]);
 
     return (
         <div className='Address'>
@@ -16,7 +34,6 @@ function Address() {
                     style={{width: "50%"}}
                     onPlaceSelected={(place1) => {
                         setMyAddress(place1); // Save selected address in state
-                        console.log(myAddress);
                     }}
                     options={{
                         types: ['address'],
@@ -31,11 +48,6 @@ function Address() {
                     style={{width: "50%"}}
                     onPlaceSelected={(place2) => {
                         setFriendsAddress(place2); // Save selected address in state
-                        // console.log(friendsAddress.geometry.location.lat());
-                        // console.log(friendsAddress.geometry.location.long());
-                        console.log(friendsAddress) // TODO: Why is this giving NULL error now???
-                        console.log(place2.geometry.location.lat());
-                        console.log(place2.geometry.location.lng());
                     }}
                     options={{
                         types: ['address'],
