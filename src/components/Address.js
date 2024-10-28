@@ -1,30 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 import '../assests/Address.css';
 
-function Address() {
-    // Declare state variables for storing addresses
-    const [myAddress, setMyAddress] = useState(null);
-    const [friendsAddress, setFriendsAddress] = useState(null);
-
-    // Use useEffect to log the updated value of myAddress
-    useEffect(() => {
-        if (myAddress) {
-            console.log(myAddress);
-            console.log(myAddress.geometry.location.lat());
-            console.log(myAddress.geometry.location.lng());
-        }
-    }, [myAddress]);
-
-    // Use useEffect to log the updated value of friendsAddress
-    useEffect(() => {
-        if (friendsAddress) {
-            console.log(friendsAddress);
-            console.log(friendsAddress.geometry.location.lat());
-            console.log(friendsAddress.geometry.location.lng());
-        }
-    }, [friendsAddress]);
-
+function Address({ setMyAddress, setFriendsAddress}) {
+    
     return (
         <div className='Address'>
             <div className='Input_container'>

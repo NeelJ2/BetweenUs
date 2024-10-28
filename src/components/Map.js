@@ -4,15 +4,24 @@ import '../assests/Map.css';
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map() {
-    const defaultProps = { // TODO: Defaulting to white house for now. Would like to make this dynamic to local user
-        center: {
+function Map({ myAddress, friendsAddress}) {
+    const defaultCenter = { // TODO: Defaulting to white house for now. Would like to make this dynamic to local user
           lat: 38.8975562,
           lng: -77.0364539
-        },
-        zoom: 11
-      };
+    };
     
+    const center = myAddress && myAddress.geometry ? {
+        location: {
+            lat: myAddress.geometry.location.lat(),
+            lng: myAddress.geometry.location.lng()
+        }
+    } : defaultCenter
+    
+    const zoom = 11;
+
+    console.log("Map Center:", center);
+    console.log("Map Key:", myAddress ? `myAddress` : 'default-map');
+
     return (
         <div className='Map'>
             <div className='Map_Header'>
@@ -28,12 +37,13 @@ function Map() {
             <div className='Map_Box'>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE}}
-                    defaultCenter={defaultProps.center}
-                    defaultZoom={defaultProps.zoom}
+                    center={center?.location ?? defaultCenter }
+                    zoom={zoom}
+                    //key={myAddress ? `${myAddress.geometry.location.lat()}-${myAddress.geometry.location.lng()}` : 'default-map'}
                 >
                     {/* <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
+                        lat={39.2134855}
+                        lng={-76.8825009}
                         text="My Marker"
                         /> */}
                 </GoogleMapReact>
