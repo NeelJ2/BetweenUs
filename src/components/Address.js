@@ -3,8 +3,7 @@ import Autocomplete from 'react-google-autocomplete';
 import '../assests/Address.css';
 
 function Address({ setMyAddress, setFriendsAddress}) {
-    console.log("Debug in address");
-    
+
     return (
         <div className='Address'>
             <div className='Input_container'>

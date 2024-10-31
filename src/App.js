@@ -23,7 +23,10 @@ function App() {
           myAddress={myAddress}
           friendsAddress={friendsAddress}
           ></Map>
-        <Results></Results>
+        <Results
+        myAddress={myAddress}
+        friendsAddress={friendsAddress}
+        ></Results>
       </div>
     </div>
   );
