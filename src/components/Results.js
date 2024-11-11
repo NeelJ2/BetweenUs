@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import '../assests/Results.css'
 
-function Results({ myAddress, friendsAddress}) {
+function Results({ center }) {
 
     const [places, setPlaces] = useState([]); // State to store fetched places
 
     useEffect(() => {
-        if (myAddress) {
+        if (!center.default) {
+            console.log("New center");
             const map = new window.google.maps.Map(document.createElement('div'));
             const service = new window.google.maps.places.PlacesService(map);
 
             const request = {
-                location: new window.google.maps.LatLng(myAddress.geometry.location.lat(), myAddress.geometry.location.lng()),
+                location: new window.google.maps.LatLng(center.location.lat, center.location.lng),
                 radius: '8046', // 8046 meters = 5 Miles
                 type: ['restaurant']
             };
@@ -26,7 +27,7 @@ function Results({ myAddress, friendsAddress}) {
                 }
             });
         }
-    }, [myAddress]);
+    }, [center]);
     
     return (
         <div className='Results'>
@@ -50,9 +51,6 @@ function Results({ myAddress, friendsAddress}) {
                 </select>
             </div>
             <div className='Results_List'>
-                {/* <textarea
-                    id='Results_List'
-                ></textarea> */}
                 <ul>
                     {places.map((place, index) => (
                         <li key={index}>

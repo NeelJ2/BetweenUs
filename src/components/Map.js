@@ -4,23 +4,8 @@ import '../assests/Map.css';
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map({ myAddress, friendsAddress}) {
-    const defaultCenter = { // TODO: Defaulting to white house for now. Would like to make this dynamic to local user
-        location : {
-            lat: 38.8975562,
-            lng: -77.0364539
-        },
-        zoom: 11  
-    };
-    
-    const center = myAddress && myAddress.geometry ? { // TODO: Make a math function that take in myAddress and friendsAddress to find center point
-        location: {
-            lat: myAddress.geometry.location.lat(),
-            lng: myAddress.geometry.location.lng()
-        },
-        zoom: 15
-    } : defaultCenter
-
+function Map({ center }) {
+    console.log("Render of map");
     return (
         <div className='Map'>
             <div className='Map_Header'>
