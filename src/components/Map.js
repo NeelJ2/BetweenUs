@@ -1,7 +1,11 @@
 import React from 'react';
-import '../assests/Map.css'
+import GoogleMapReact from 'google-map-react';
+import '../assests/Map.css';
 
-function Map() {
+// const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+function Map({ center }) {
+    console.log("Render of map");
     return (
         <div className='Map'>
             <div className='Map_Header'>
@@ -14,11 +18,13 @@ function Map() {
                     <option value="25">25 miles</option>
                 </select>
             </div>
-            <div className='Map'>
-                <textarea
-                    id='Map'
-                    placeholder='Map'
-                ></textarea>
+            <div className='Map_Box'>
+                <GoogleMapReact
+                    bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE}}
+                    center={center.location}
+                    zoom={center.zoom}
+                >
+                </GoogleMapReact>
             </div>
         </div>
     );
