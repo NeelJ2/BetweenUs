@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import '../assests/Map.css';
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-function Map({ center }) {
-    console.log("Render of map");
+function Map({ center, setResultsRadius }) {
+    useEffect(() => { // Used for map rerender. Is there a better way?? This is not consistent 
+        console.log("New center")
+    }, [center]);
+    
+    const updateRadius = async () => {
+        setResultsRadius(document.getElementById("Search_Radius").value)
+    }
+
+    window.updateRadius = updateRadius
     return (
         <div className='Map'>
             <div className='Map_Header'>
                 <p>Search Radius</p>
-                <select name='Search_Radius'>
-                    <option value="5">5 miles</option>
-                    <option value="10">10 miles</option>
-                    <option value="15">15 miles</option>
-                    <option value="20">20 miles</option>
-                    <option value="25">25 miles</option>
+                <select name='Search_Radius'
+                        id='Search_Radius'
+                        onChange={updateRadius}>
+                    <option value="1609">1 mile</option>
+                    <option value="4828">3 miles</option>
+                    <option value="8046">5 miles</option>
                 </select>
             </div>
             <div className='Map_Box'>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../assests/Results.css'
 
-function Results({ center }) {
+function Results({ center, resultsRadius }) {
 
     const [places, setPlaces] = useState([]); // State to store fetched places
 
@@ -13,7 +13,7 @@ function Results({ center }) {
 
             const request = {
                 location: new window.google.maps.LatLng(center.location.lat, center.location.lng),
-                radius: '8046', // 8046 meters = 5 Miles
+                radius: resultsRadius,
                 type: ['restaurant']
             };
 
@@ -27,7 +27,7 @@ function Results({ center }) {
                 }
             });
         }
-    }, [center]);
+    }, [center, resultsRadius]);
     
     return (
         <div className='Results'>
