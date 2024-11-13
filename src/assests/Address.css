@@ -11,11 +11,6 @@
     color: white;
 }
 
-.Input_container input{
-    width: 50vh;
-    height: 4vh;
-}
-
 .Input_container p {
     margin: 0px;
     font-size: 1.7rem;

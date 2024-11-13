@@ -6,21 +6,21 @@ import '../assests/Map.css';
 
 function Map({ center, setResultsRadius }) {
     useEffect(() => { // Used for map rerender. Is there a better way?? This is not consistent 
-        console.log("New center")
+        console.log("New center Map")
     }, [center]);
     
-    const updateRadius = async () => {
+    const updateResultsRadius = async () => {
         setResultsRadius(document.getElementById("Search_Radius").value)
     }
 
-    window.updateRadius = updateRadius
+    window.updateResultsRadius = updateResultsRadius
     return (
         <div className='Map'>
             <div className='Map_Header'>
                 <p>Search Radius</p>
                 <select name='Search_Radius'
                         id='Search_Radius'
-                        onChange={updateRadius}>
+                        onChange={updateResultsRadius}>
                     <option value="1609">1 mile</option>
                     <option value="4828">3 miles</option>
                     <option value="8046">5 miles</option>

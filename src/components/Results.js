@@ -7,7 +7,7 @@ function Results({ center, resultsRadius }) {
 
     useEffect(() => {
         if (!center.default) {
-            console.log("New center");
+            console.log("New center Results");
             const map = new window.google.maps.Map(document.createElement('div'));
             const service = new window.google.maps.places.PlacesService(map);
 

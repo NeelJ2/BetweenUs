@@ -10,7 +10,9 @@ function Address({ setMyAddress, setFriendsAddress}) {
                 <p>Your Address</p>
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
-                    style={{width: "50%"}}
+                    style={{width: "50%",
+                        borderRadius: "0px"
+                    }}
                     onPlaceSelected={(place1) => {
                         setMyAddress(place1); // Save selected address in state
                     }}
@@ -24,7 +26,9 @@ function Address({ setMyAddress, setFriendsAddress}) {
                 <p>Friend's Address</p>
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
-                    style={{width: "50%"}}
+                    style={{width: "50%",
+                        borderRadius: "10px"
+                    }}
                     onPlaceSelected={(place2) => {
                         setFriendsAddress(place2); // Save selected address in state
                     }}
