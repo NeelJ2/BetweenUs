@@ -16,3 +16,14 @@ html {
   display: grid;
   grid-template-columns: auto auto;
 }
+
+.Colored_Text {
+  background-image: linear-gradient(to right, rgb(219, 230, 7) 25%, rgb(206, 25, 5) 60%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+}

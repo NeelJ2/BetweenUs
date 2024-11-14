@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <header className="BetweenUs_Header">
-        <h1>BetweenUs</h1>
+        <h1 className='Colored_Text'>BetweenUs</h1>
       </header>
       <Address 
         setMyAddress={setMyAddress}

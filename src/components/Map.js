@@ -17,7 +17,7 @@ function Map({ center, setResultsRadius }) {
     return (
         <div className='Map'>
             <div className='Map_Header'>
-                <p>Search Radius</p>
+                <p className='Colored_Text'>Search Radius</p>
                 <select name='Search_Radius'
                         id='Search_Radius'
                         onChange={updateResultsRadius}>

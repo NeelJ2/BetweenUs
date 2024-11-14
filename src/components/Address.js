@@ -7,11 +7,11 @@ function Address({ setMyAddress, setFriendsAddress}) {
     return (
         <div className='Address'>
             <div className='Input_container'>
-                <p>Your Address</p>
+                <p className='Colored_Text'>Your Address</p>
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%",
-                        borderRadius: "0px"
+                        borderRadius: "10px"
                     }}
                     onPlaceSelected={(place1) => {
                         setMyAddress(place1); // Save selected address in state
@@ -23,7 +23,7 @@ function Address({ setMyAddress, setFriendsAddress}) {
                 />
             </div>
             <div className='Input_container'>
-                <p>Friend's Address</p>
+                <p className='Colored_Text'>Friend's Address</p>
                 <Autocomplete
                     apiKey={process.env.REACT_APP_GOOGLE}
                     style={{width: "50%",

@@ -32,7 +32,7 @@ function Results({ center, resultsRadius }) {
     return (
         <div className='Results'>
             <div className='Results_Header'>
-                <p>Cuisine</p>
+                <p className='Colored_Text'>Cuisine</p>
                 <select name='Restaurant_Cuisine'>
                     <option value="Americian">Americian</option>
                     <option value="Barbecue">Barbecue</option>
