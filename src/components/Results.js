@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import '../assests/Results.css'
 
 function Results({ center, resultsRadius }) {
 
     const [places, setPlaces] = useState([]); // State to store fetched places
 
-    const getResults = async () => {
+    const getResults = useCallback(async () => {
         const map = new window.google.maps.Map(document.createElement('div'));
         const service = new window.google.maps.places.PlacesService(map);
 
@@ -25,14 +25,14 @@ function Results({ center, resultsRadius }) {
                 console.log(status)
             }
         });
-    }
+    }, [center, resultsRadius]);
 
     useEffect(() => {
         if (!center.default) {
             console.log("New center Results");
             getResults();
         }
-    }, [center, resultsRadius]);
+    }, [center, resultsRadius, getResults]);
     
     return (
         <div className='Results'>
