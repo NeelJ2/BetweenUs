@@ -1,39 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import '../assests/Results.css'
 
 function Results({ center, resultsRadius }) {
 
     const [places, setPlaces] = useState([]); // State to store fetched places
 
+    const getResults = useCallback(async () => {
+        const map = new window.google.maps.Map(document.createElement('div'));
+        const service = new window.google.maps.places.PlacesService(map);
+
+        const request = {
+            location: new window.google.maps.LatLng(center.location.lat, center.location.lng),
+            radius: resultsRadius,
+            type: ['restaurant'],
+            keyword: document.getElementById("Restaurant_Cuisine").value
+        };
+
+        service.nearbySearch(request, (results, status) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+                setPlaces(results.slice(0, 10))
+                console.log(results[0]);
+            } else {
+                alert('Error fetching places');
+                console.log(status)
+            }
+        });
+    }, [center, resultsRadius]);
+
     useEffect(() => {
         if (!center.default) {
             console.log("New center Results");
-            const map = new window.google.maps.Map(document.createElement('div'));
-            const service = new window.google.maps.places.PlacesService(map);
-
-            const request = {
-                location: new window.google.maps.LatLng(center.location.lat, center.location.lng),
-                radius: resultsRadius,
-                type: ['restaurant']
-            };
-
-            service.nearbySearch(request, (results, status) => {
-                if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                    setPlaces(results.slice(0, 10))
-                    console.log(results);
-                } else {
-                    alert('Error fetching places');
-                    console.log(status)
-                }
-            });
+            getResults();
         }
-    }, [center, resultsRadius]);
+    }, [center, resultsRadius, getResults]);
     
     return (
         <div className='Results'>
             <div className='Results_Header'>
                 <p className='Colored_Text'>Cuisine</p>
-                <select name='Restaurant_Cuisine'>
+                <select name='Restaurant_Cuisine'
+                        id='Restaurant_Cuisine'
+                        onChange={getResults}>
                     <option value="Americian">Americian</option>
                     <option value="Barbecue">Barbecue</option>
                     <option value="Chinese">Chinese</option>

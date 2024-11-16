@@ -30,7 +30,7 @@ function FindCenter({  myAddress, friendsAddress, setCenter }) {
                 lat: (midLat * 180) / Math.PI,
                 lng: (midLon * 180) / Math.PI
             },
-            zoom: 14,
+            zoom: 12,
             default: false   
         };
     }

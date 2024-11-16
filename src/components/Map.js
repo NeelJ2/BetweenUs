@@ -31,6 +31,7 @@ function Map({ center, setResultsRadius }) {
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE}}
                     center={center.location}
                     zoom={center.zoom}
+                    yesIWantToUseGoogleMapApiInternals  // Needed for markers
                 >
                 </GoogleMapReact>
             </div>
