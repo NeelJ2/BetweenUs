@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import Address from './components/Address';
 import Results from './components/Results';
-import Map from './components/Map';
+import MapBox from './components/Map';
 import FindCenter from './components/Math';
 import './App.css';
 
@@ -34,10 +34,10 @@ function App() {
           friendsAddress={friendsAddress}
           setCenter={setCenter}
         />
-        <Map
+        <MapBox
           center={center}
           setResultsRadius={setResultsRadius}
-          ></Map>
+          ></MapBox>
         <Results
           center={center}
           resultsRadius={resultsRadius}

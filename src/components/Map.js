@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import GoogleMapReact from 'google-map-react';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 import '../assests/Map.css';
 
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-function Map({ center, setResultsRadius }) {
-    useEffect(() => { // Used for map rerender. Is there a better way?? This is not consistent 
+function MapBox({ center, setResultsRadius }) {
+    useEffect(() => {
         console.log("New center Map")
     }, [center]);
     
@@ -27,16 +25,15 @@ function Map({ center, setResultsRadius }) {
                 </select>
             </div>
             <div className='Map_Box'>
-                <GoogleMapReact
-                    bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE}}
-                    center={center.location}
-                    zoom={center.zoom}
-                    yesIWantToUseGoogleMapApiInternals  // Needed for markers
-                >
-                </GoogleMapReact>
+                <APIProvider apiKey={process.env.REACT_APP_GOOGLE}>
+                    <Map
+                        center={center.location}
+                        zoom={center.zoom}
+                        ></Map>
+                </APIProvider>
             </div>
         </div>
     );
 }
 
-export default Map;
+export default MapBox;
