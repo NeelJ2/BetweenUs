@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import { APIProvider, Map, AdvancedMarker, Pin } from '@vis.gl/react-google-maps';
 import '../assests/Map.css';
 
-function MapBox({ center, setResultsRadius }) {
+function MapBox({ center, setResultsRadius}) {
     useEffect(() => {
         console.log("New center Map")
     }, [center]);
@@ -27,9 +27,10 @@ function MapBox({ center, setResultsRadius }) {
             <div className='Map_Box'>
                 <APIProvider apiKey={process.env.REACT_APP_GOOGLE}>
                     <Map
-                        center={center.location}
-                        zoom={center.zoom}
-                        ></Map>
+                    defaultCenter={center.location}
+                    center={center.location}
+                    zoom={center.zoom}
+                    ></Map>
                 </APIProvider>
             </div>
         </div>

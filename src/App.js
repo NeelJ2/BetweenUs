@@ -37,6 +37,7 @@ function App() {
         <MapBox
           center={center}
           setResultsRadius={setResultsRadius}
+          setCenter={setCenter}
           ></MapBox>
         <Results
           center={center}
