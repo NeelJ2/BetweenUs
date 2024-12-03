@@ -42,14 +42,15 @@ function MapBox({ center, setResultsRadius }) {
             zoom={center.zoom}
             mapId = {ID}
           >
-            {/* Marker at the center */}
-            <AdvancedMarker position={center.location}>
+            {!center.default && (
+              <AdvancedMarker position={center.location}>
               <Pin
                 background={"#0f9d58"}
                 borderColor={"#006425"}
                 glyphColor={"#60d98f"}
               />
             </AdvancedMarker>
+          )}
           </Map>
         </APIProvider>
       </div>
