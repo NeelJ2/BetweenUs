@@ -37,6 +37,8 @@ function App() {
         <MapBox
           center={center}
           setResultsRadius={setResultsRadius}
+          myAddress={myAddress}
+          friendsAddress={friendsAddress}
           ></MapBox>
         <Results
           center={center}

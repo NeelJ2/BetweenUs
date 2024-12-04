@@ -8,7 +8,7 @@ import {
 import "../assests/Map.css";
 
 
-function MapBox({ center, setResultsRadius }) {
+function MapBox({ center, setResultsRadius, myAddress, friendsAddress }) {
     const ID = `${center}_MAP_ID`;
 
   useEffect(() => {
@@ -50,7 +50,27 @@ function MapBox({ center, setResultsRadius }) {
                 glyphColor={"#60d98f"}
               />
             </AdvancedMarker>
-          )}
+            )}
+            {!center.default && myAddress && (
+                <AdvancedMarker position={{lat: myAddress.geometry.location.lat(),
+                                           lng: myAddress.geometry.location.lng()}}>
+                <Pin
+                  background={"#fc0b0b"}
+                  borderColor={"#006425"}
+                  glyphColor={"#60d98f"}
+                />
+              </AdvancedMarker>
+            )}
+            {!center.default && friendsAddress && (
+                <AdvancedMarker position={{lat: friendsAddress.geometry.location.lat(),
+                                           lng: friendsAddress.geometry.location.lng()}}>
+                <Pin
+                  background={"#0b17fc"}
+                  borderColor={"#006425"}
+                  glyphColor={"#60d98f"}
+                />
+              </AdvancedMarker>
+            )}
           </Map>
         </APIProvider>
       </div>
