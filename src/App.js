@@ -9,6 +9,7 @@ function App() {
   // Declare state variables for storing addresses
   const [myAddress, setMyAddress] = useState(null);
   const [friendsAddress, setFriendsAddress] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState(null);
   const [resultsRadius, setResultsRadius] = useState(1609)
   const [center, setCenter] = useState({
     location : {
@@ -39,10 +40,12 @@ function App() {
           setResultsRadius={setResultsRadius}
           myAddress={myAddress}
           friendsAddress={friendsAddress}
+          selectedPlace={selectedPlace}
           ></MapBox>
         <Results
           center={center}
           resultsRadius={resultsRadius}
+          setSelectedPlace={setSelectedPlace}
           ></Results>
       </div>
     </div>
