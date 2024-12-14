@@ -32,3 +32,12 @@
     height: 55vh;
     overflow: auto
 }
+
+.Results_List ul {
+    list-style-type: none;
+    margin-left: -20px;
+}
+
+.Results_List li:hover {
+    background-color: lightblue;
+}

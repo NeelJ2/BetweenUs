@@ -16,11 +16,14 @@ function loadGoogleMapsAPI() {
     return;
   }
 
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
+  if (!window.google){
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  }
 }
 
 // Call the function to load Google Maps API
