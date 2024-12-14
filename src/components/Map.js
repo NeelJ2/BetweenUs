@@ -1,22 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
 import "../assests/Map.css";
 
 function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedPlace }) {
-    const ID = `${center}_MAP_ID`;
+  const [localCenter, setLocalCenter] = useState(center.location);
+  const [localZoom, setLocalZoom] = useState(center.zoom);
+
+  const ID = `${center}_MAP_ID`;
+
+  // Update center from getMidpoint()
+  useEffect(() => {
+    setLocalCenter(center.location);
+    setLocalZoom(center.zoom);
+  }, [center]);
+
+  // Update center from map drag
+  const handleCameraChange = (event) => {
+    const { detail } = event;
+    setLocalCenter(detail.center);
+    setLocalZoom(detail.zoom);
+  };
 
   useEffect(() => {
     console.log("New center Map");
   }, [center]);
-
-  useEffect(() => {
-    // if (selectedPlace){
-    //   center.location = {
-    //     lat: selectedPlace.geometry.location.lat(),
-    //     lng: selectedPlace.geometry.location.lng()} 
-    //   center.zoom = 19
-    // }
-  }, [selectedPlace]);
 
   const updateResultsRadius = async () => {
     setResultsRadius(document.getElementById("Search_Radius").value);
@@ -40,10 +47,10 @@ function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedP
       <div className="Map_Box">
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE}>
           <Map
-            defaultCenter={center.location}
-            center={center.location}
-            zoom={center.zoom}
-            mapId = {ID}
+            center={localCenter}
+            zoom={localZoom}
+            mapId={ID}
+            onCameraChanged={handleCameraChange}
           >
             {!center.default && !selectedPlace && (
               <AdvancedMarker position={center.location}>
