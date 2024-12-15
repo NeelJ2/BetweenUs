@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps";
+import { Circle } from "./Circle";
 import "../assests/Map.css";
 
-function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedPlace }) {
+function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedPlace, resultsRadius }) {
   const [localCenter, setLocalCenter] = useState(center.location);
   const [localZoom, setLocalZoom] = useState(center.zoom);
 
@@ -52,15 +53,26 @@ function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedP
             mapId={ID}
             onCameraChanged={handleCameraChange}
           >
+            <Circle
+            radius={resultsRadius * 2}// 1 mile: 3218, 3 miles: 9656, 5 miles: 16093
+            center={center.location}
+            strokeColor={'#0c4cb3'}
+            strokeOpacity={1}
+            strokeWeight={3}
+            fillColor={'#3b82f6'}
+            fillOpacity={0.3}
+          />
+            {/* Center marker */}
             {!center.default && !selectedPlace && (
               <AdvancedMarker position={center.location}>
               <Pin
-                background={"#0f9d58"}
-                borderColor={"#006425"}
-                glyphColor={"#60d98f"}
-              />
+                  background={"#FBBC04"}
+                  borderColor={"#000"}
+                  glyphColor={"#000"}
+                />
             </AdvancedMarker>
             )}
+            {/* My address marker */}
             {!center.default && myAddress && !selectedPlace && (
                 <AdvancedMarker position={{lat: myAddress.geometry.location.lat(),
                                            lng: myAddress.geometry.location.lng()}}>
@@ -71,24 +83,21 @@ function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedP
                 />
               </AdvancedMarker>
             )}
+            {/* Friend's marker */}
             {!center.default && friendsAddress && !selectedPlace && (
                 <AdvancedMarker position={{lat: friendsAddress.geometry.location.lat(),
                                            lng: friendsAddress.geometry.location.lng()}}>
                 <Pin
-                  background={"#0b17fc"}
-                  borderColor={"#006425"}
-                  glyphColor={"#60d98f"}
-                />
+                background={"#0f9d58"}
+                borderColor={"#006425"}
+                glyphColor={"#60d98f"}
+              />
               </AdvancedMarker>
             )}
+            {/* Selected place marker */}
             {!center.default && selectedPlace && (
                 <AdvancedMarker position={{lat: selectedPlace.geometry.location.lat(),
                                            lng: selectedPlace.geometry.location.lng()}}>
-                <Pin
-                  background={"#0b17fc"}
-                  borderColor={"#006425"}
-                  glyphColor={"#60d98f"}
-                />
               </AdvancedMarker>
             )}
           </Map>

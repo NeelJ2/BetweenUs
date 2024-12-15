@@ -12,7 +12,7 @@ function Results({ center, resultsRadius, setSelectedPlace }) {
         const request = {
             location: new window.google.maps.LatLng(center.location.lat, center.location.lng),
             radius: resultsRadius,
-            type: ['restaurant'],
+            type: "restaurant",
             keyword: cuisine
         };
 
@@ -20,6 +20,7 @@ function Results({ center, resultsRadius, setSelectedPlace }) {
             if (status === window.google.maps.places.PlacesServiceStatus.OK) {
                 setPlaces(results.slice(0, 10));
                 console.log(results[0]);
+                console.log("Results status OK")
             } else {
                 alert('Error fetching places');
                 console.log(status)
