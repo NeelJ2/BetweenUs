@@ -62,29 +62,19 @@ function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedP
             fillColor={'#3b82f6'}
             fillOpacity={0.3}
           />
-            {/* Center marker */}
-            {!center.default && !selectedPlace && (
-              <AdvancedMarker position={center.location}>
-              <Pin
+            {/* My address marker */}
+            {!center.default && myAddress && (
+                <AdvancedMarker position={{lat: myAddress.geometry.location.lat(),
+                                           lng: myAddress.geometry.location.lng()}}>
+                <Pin
                   background={"#FBBC04"}
                   borderColor={"#000"}
                   glyphColor={"#000"}
                 />
-            </AdvancedMarker>
-            )}
-            {/* My address marker */}
-            {!center.default && myAddress && !selectedPlace && (
-                <AdvancedMarker position={{lat: myAddress.geometry.location.lat(),
-                                           lng: myAddress.geometry.location.lng()}}>
-                <Pin
-                  background={"#fc0b0b"}
-                  borderColor={"#006425"}
-                  glyphColor={"#60d98f"}
-                />
               </AdvancedMarker>
             )}
             {/* Friend's marker */}
-            {!center.default && friendsAddress && !selectedPlace && (
+            {!center.default && friendsAddress && (
                 <AdvancedMarker position={{lat: friendsAddress.geometry.location.lat(),
                                            lng: friendsAddress.geometry.location.lng()}}>
                 <Pin
