@@ -3,7 +3,7 @@ import { APIProvider, Map, AdvancedMarker, Pin } from "@vis.gl/react-google-maps
 import { Circle } from "./Circle";
 import "../assests/Map.css";
 
-function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedPlace, resultsRadius }) {
+function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedPlace, resultsRadius, setSelectedPlace }) {
   const [localCenter, setLocalCenter] = useState(center.location);
   const [localZoom, setLocalZoom] = useState(center.zoom);
 
@@ -24,7 +24,8 @@ function MapBox({ center, setResultsRadius, myAddress, friendsAddress, selectedP
 
   useEffect(() => {
     console.log("New center Map");
-  }, [center]);
+    setSelectedPlace(null);
+  }, [center, setSelectedPlace]);
 
   const updateResultsRadius = async () => {
     setResultsRadius(document.getElementById("Search_Radius").value);

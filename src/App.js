@@ -42,6 +42,7 @@ function App() {
           friendsAddress={friendsAddress}
           selectedPlace={selectedPlace}
           resultsRadius={resultsRadius}
+          setSelectedPlace={setSelectedPlace}
           ></MapBox>
         <Results
           center={center}
